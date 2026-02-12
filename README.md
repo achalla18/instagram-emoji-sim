@@ -1,6 +1,6 @@
-# 🎉 Emoji Reactions — Instagram-Style Floating Emoji App
+#  Emoji Reactions — Instagram-Style Floating Emoji App
 
-A full multi-language clone of Instagram's live emoji reaction system, built for **Windows**.
+A full simulation of Instagram's live emoji reaction system, built for **Windows**.
 
 Tap/click emojis and watch them float upward with physics-based animations, particle trails, and glow effects — just like Instagram Live.
 
@@ -48,14 +48,14 @@ python -m http.server 8080 --directory src/web
 
 ## Features
 
-- 🎯 6 reaction emojis: ❤️ 😂 😮 😢 😡 👍
-- ✨ Physics-based floating animation with randomized paths
-- 🌈 Particle trail effects behind each emoji
-- 💫 Scale pulse on spawn + fade on exit
-- 🔊 Subtle pop sound effects (web version)
-- 🖥️ Desktop overlay mode (always-on-top transparent window)
-- 📱 Responsive web version works on any device
-- ⚙️ Fully configurable via JSON
+-  6 reaction emojis: ❤️ 😂 😮 😢 😡 👍
+-  Physics-based floating animation with randomized paths
+-  Particle trail effects behind each emoji
+-  Scale pulse on spawn + fade on exit
+-  Subtle pop sound effects (web version)
+-  Desktop overlay mode (always-on-top transparent window)
+-  Responsive web version works on any device
+-  Fully configurable via JSON
 
 ## Architecture
 
