@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Emoji Reactions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Animated background -->
+        <div class="bg-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-glow"></div>
+            <h1 class="title">
+                <span class="title-icon">✨</span>
+                Emoji Reactions
+            </h1>
+            <p class="subtitle">Instagram-style floating reactions</p>
+        </header>
+
+        <!-- Main canvas area where emojis float -->
+        <div class="canvas-container">
+            <canvas id="reactionCanvas"></canvas>
+            <div class="canvas-overlay">
+                <p class="hint" id="hint">Tap an emoji below to react!</p>
+            </div>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="stats-bar">
+            <div class="stat">
+                <span class="stat-value" id="totalCount">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-value" id="activeCount">0</span>
+                <span class="stat-label">Active</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-value" id="topEmoji">—</span>
+                <span class="stat-label">Top</span>
+            </div>
+        </div>
+
+        <!-- Emoji reaction bar -->
+        <div class="reaction-bar">
+            <button class="emoji-btn" data-emoji="❤️" data-color="#ff3b5c" data-label="Love">
+                <span class="emoji-icon">❤️</span>
+                <span class="emoji-label">Love</span>
+                <span class="emoji-count">0</span>
+            </button>
+            <button class="emoji-btn" data-emoji="😂" data-color="#ffcc00" data-label="Haha">
+                <span class="emoji-icon">😂</span>
+                <span class="emoji-label">Haha</span>
+                <span class="emoji-count">0</span>
+            </button>
+            <button class="emoji-btn" data-emoji="😮" data-color="#ff9500" data-label="Wow">
+                <span class="emoji-icon">😮</span>
+                <span class="emoji-label">Wow</span>
+                <span class="emoji-count">0</span>
+            </button>
+            <button class="emoji-btn" data-emoji="😢" data-color="#5ac8fa" data-label="Sad">
+                <span class="emoji-icon">😢</span>
+                <span class="emoji-label">Sad</span>
+                <span class="emoji-count">0</span>
+            </button>
+            <button class="emoji-btn" data-emoji="😡" data-color="#ff2d55" data-label="Angry">
+                <span class="emoji-icon">😡</span>
+                <span class="emoji-label">Angry</span>
+                <span class="emoji-count">0</span>
+            </button>
+            <button class="emoji-btn" data-emoji="👍" data-color="#34c759" data-label="Like">
+                <span class="emoji-icon">👍</span>
+                <span class="emoji-label">Like</span>
+                <span class="emoji-count">0</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
