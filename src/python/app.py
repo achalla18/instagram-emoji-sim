@@ -1,10 +1,3 @@
-"""
-Emoji Reactions — Desktop App (Windows)
-Instagram-style floating emoji reaction overlay using tkinter.
-
-Run:  python app.py
-"""
-
 import tkinter as tk
 import math
 import sys
@@ -16,9 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import CONFIG
 from reactions import ReactionManager
 
-# ═══════════════════════════════════════════════════════
-# Constants from config
-# ═══════════════════════════════════════════════════════
+
 WIN = CONFIG["window"]
 EMOJIS = CONFIG["emojis"]
 ANIM = CONFIG["animation"]
@@ -49,11 +40,9 @@ class EmojiReactionApp:
         self.root.configure(bg=BG_DARK)
         self.root.resizable(False, False)
 
-        # Try to set always-on-top
         if WIN.get("always_on_top", False):
             self.root.attributes("-topmost", True)
 
-        # Try to set window icon on Windows
         try:
             self.root.iconbitmap(default="")
         except Exception:
@@ -66,7 +55,6 @@ class EmojiReactionApp:
     def _build_ui(self):
         """Construct the UI: canvas + emoji buttons."""
 
-        # ── Header ──
         header = tk.Frame(self.root, bg=BG_DARK, height=50)
         header.pack(fill=tk.X)
         header.pack_propagate(False)
@@ -77,7 +65,6 @@ class EmojiReactionApp:
             fg="#e0e0ff", bg=BG_DARK
         ).pack(pady=10)
 
-        # ── Canvas for floating emojis ──
         self.canvas = tk.Canvas(
             self.root, width=WIDTH, height=CANVAS_HEIGHT,
             bg=BG_DARK, highlightthickness=0, bd=0
@@ -87,7 +74,6 @@ class EmojiReactionApp:
         # Draw subtle gradient overlay (simulated with rectangles)
         self._draw_background()
 
-        # ── Stats bar ──
         stats_frame = tk.Frame(self.root, bg=BG_MID, height=30)
         stats_frame.pack(fill=tk.X)
         stats_frame.pack_propagate(False)
@@ -98,7 +84,6 @@ class EmojiReactionApp:
         )
         self.stats_label.pack(pady=5)
 
-        # ── Emoji button bar ──
         btn_frame = tk.Frame(self.root, bg=BG_DARK, height=BUTTON_AREA_HEIGHT)
         btn_frame.pack(fill=tk.X, side=tk.BOTTOM)
         btn_frame.pack_propagate(False)
@@ -177,11 +162,9 @@ class EmojiReactionApp:
         # Update physics
         self.manager.update()
 
-        # Clear previous frame (keep background)
         self.canvas.delete("emoji")
         self.canvas.delete("particle")
 
-        # Draw particles first (behind emojis)
         if PARTICLES.get("enabled", True):
             for fe in self.manager.emojis:
                 for p in fe.particles:
@@ -201,7 +184,6 @@ class EmojiReactionApp:
                             fill=color, outline="", tags="particle"
                         )
 
-        # Draw floating emojis
         for fe in self.manager.emojis:
             if fe.opacity < 0.05:
                 continue
@@ -210,7 +192,6 @@ class EmojiReactionApp:
             if size < 4:
                 continue
 
-            # Draw glow behind emoji
             glow_r = size + 8
             r, g, b_val = self._hex_to_rgb(fe.color)
             glow_blend = fe.opacity * 0.2
@@ -227,7 +208,6 @@ class EmojiReactionApp:
 
             # Draw the emoji text
             font_size = max(8, size)
-            # Adjust opacity by dimming color (tkinter hack)
             if fe.opacity > 0.5:
                 stipple = ""
             else:
@@ -241,13 +221,11 @@ class EmojiReactionApp:
                 stipple=stipple
             )
 
-        # Update stats
         self.stats_label.config(
             text=f"Reactions: {self.manager.total_spawned}  |  "
                  f"Active: {self.manager.active_count}"
         )
 
-        # Schedule next frame
         self.root.after(FRAME_MS, self._animate)
 
     @staticmethod
