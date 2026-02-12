@@ -1,7 +1,4 @@
-"""
-Configuration loader for Emoji Reactions desktop app.
-Reads settings.json and provides typed access.
-"""
+
 
 import json
 import os
@@ -9,7 +6,6 @@ from pathlib import Path
 
 
 def load_config() -> dict:
-    """Load config from settings.json, searching up from this file."""
     config_paths = [
         Path(__file__).parent.parent.parent / "config" / "settings.json",
         Path.cwd() / "config" / "settings.json",
