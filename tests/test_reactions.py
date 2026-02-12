@@ -1,8 +1,4 @@
-"""
-Tests for the Emoji Reaction animation engine.
-Run: python -m pytest tests/ -v
-  or: python tests/test_reactions.py
-"""
+
 
 import sys
 import os
