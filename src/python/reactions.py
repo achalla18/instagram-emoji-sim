@@ -1,7 +1,4 @@
-"""
-Emoji Reaction Animation Engine
-Handles physics, motion paths, and particle trails for floating emojis.
-"""
+
 
 import math
 import random
@@ -88,13 +85,10 @@ class FloatingEmoji:
         
         progress = self.progress
         
-        # ── Rise upward ──
         self.y -= self.rise_speed
         
-        # ── Sinusoidal wobble ──
         self.x += math.sin(self.y * self.wobble_freq + self.wobble_phase) * 1.5
         
-        # ── Scale: pop in, hold, then shrink ──
         if progress < 0.15:
             # Elastic pop-in
             t = progress / 0.15
@@ -106,27 +100,22 @@ class FloatingEmoji:
             t = (progress - 0.7) / 0.3
             self.scale = self.max_scale * (1.0 - t * t)
         
-        # ── Opacity: fade in the last 30% ──
         if progress > 0.7:
             self.opacity = 1.0 - ((progress - 0.7) / 0.3)
         else:
             self.opacity = 1.0
         
-        # ── Gentle rotation ──
         self.rotation += self.rotation_speed
         
-        # ── Spawn trail particles ──
         now = time.time()
         if now - self.last_particle_spawn > 0.05 and progress < 0.8:
             self._spawn_particle()
             self.last_particle_spawn = now
         
-        # ── Update existing particles ──
         for p in self.particles:
             p.update()
         self.particles = [p for p in self.particles if p.alive]
         
-        # ── Death check ──
         if progress >= 1.0 or self.y < self.target_y:
             self.alive = False
     
